@@ -1,7 +1,8 @@
-package com.surkhojb.groceryapp
+package com.surkhojb.groceryapp.feature.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.surkhojb.groceryapp.R
 
 class MainActivity : AppCompatActivity() {
 
