@@ -51,4 +51,7 @@ dependencies {
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+
+    //Koin
+    implementation "org.koin:koin-core:$koin_version"
 }
