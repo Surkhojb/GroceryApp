@@ -11,8 +11,10 @@ data class GroceryItem(
     @ColumnInfo(name = "item_amount")
     var amount: Int,
     @ColumnInfo(name = "item_category")
-    var category: String = ""
+    var category: String = "",
+    @ColumnInfo(name = "item_checked")
+    var checked: Boolean = false
 ){
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = null
+    var id: Int = 0
 }
