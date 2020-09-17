@@ -7,11 +7,11 @@ import com.surkhojb.groceryapp.model.GroceryItem
 @Dao
 interface GroceryDao{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertItem(item: GroceryItem)
+    fun insertItem(item: GroceryItem)
 
     @Delete
-    suspend fun deleteItem(item: GroceryItem)
+    fun deleteItem(item: GroceryItem)
 
     @Query("SELECT * FROM grocery_list")
-    suspend fun getItems(): LiveData<List<GroceryItem>>
+    fun getItems(): LiveData<List<GroceryItem>>
 }
