@@ -14,7 +14,6 @@ import java.lang.IllegalArgumentException
 class GroceriesAdapter: RecyclerView.Adapter<GroceriesAdapter.GroceryViewHolder>() {
     private var groceries: List<GroceryItem>? = null
     private var checkedListener: GroceriesOnItemCheckListener? = null
-    //private var itemPosition: Int? = 0
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -47,22 +46,24 @@ class GroceriesAdapter: RecyclerView.Adapter<GroceriesAdapter.GroceryViewHolder>
         notifyDataSetChanged()
     }
 
-    inner class GroceryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), CompoundButton.OnCheckedChangeListener{
+    inner class GroceryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener{
         private val itemName: TextView = itemView.findViewById(R.id.item_name)
         private val itemCheck: CheckBox = itemView.findViewById(R.id.item_check)
 
         fun bind(item: GroceryItem){
             itemName.text = item.name
             itemCheck.isChecked = item.checked
-            itemCheck.setOnCheckedChangeListener(this)
+            itemCheck.setOnClickListener(this)
         }
 
-        override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+        override fun onClick(v: View?) {
             val item = groceries?.get(position)
             item.let {
-                checkedListener?.onItemChecked(item!!)
+                item!!.checked = itemCheck.isChecked
+                checkedListener?.onItemChecked(item)
             }
         }
+
     }
 
 }

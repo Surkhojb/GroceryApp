@@ -9,5 +9,7 @@ interface GroceryRepository {
 
     suspend fun deleteItem(item: GroceryItem)
 
-    suspend fun getItems(): LiveData<List<GroceryItem>>
+    suspend fun updateItem(item: GroceryItem)
+
+    fun getItems(): LiveData<List<GroceryItem>>
 }
