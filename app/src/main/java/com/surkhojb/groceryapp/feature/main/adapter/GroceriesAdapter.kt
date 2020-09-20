@@ -46,6 +46,10 @@ class GroceriesAdapter: RecyclerView.Adapter<GroceriesAdapter.GroceryViewHolder>
         notifyDataSetChanged()
     }
 
+    fun getItem(position: Int): GroceryItem?{
+        return groceries?.get(position)
+    }
+
     inner class GroceryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener{
         private val itemName: TextView = itemView.findViewById(R.id.item_name)
         private val itemCheck: CheckBox = itemView.findViewById(R.id.item_check)

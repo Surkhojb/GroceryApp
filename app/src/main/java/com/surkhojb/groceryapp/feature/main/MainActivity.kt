@@ -1,19 +1,24 @@
 package com.surkhojb.groceryapp.feature.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.surkhojb.groceryapp.R
+import com.surkhojb.groceryapp.feature.common.OnAddItemClickListener
+import com.surkhojb.groceryapp.feature.common.RoundedDialog
+import com.surkhojb.groceryapp.feature.common.SwipeCallBack
+import com.surkhojb.groceryapp.feature.common.extensions.snackShort
 import com.surkhojb.groceryapp.feature.main.adapter.GroceriesAdapter
 import com.surkhojb.groceryapp.feature.main.adapter.GroceriesOnItemCheckListener
 import com.surkhojb.groceryapp.feature.main.viewmodel.MainViewModel
 import com.surkhojb.groceryapp.model.GroceryItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : AppCompatActivity(), GroceriesOnItemCheckListener {
 
@@ -35,11 +40,18 @@ class MainActivity : AppCompatActivity(), GroceriesOnItemCheckListener {
         viewModel.updateItem(item)
     }
 
-    private fun setUpFabButton(){
-        extended_fab.setOnClickListener {
-            viewModel.insertItem(GroceryItem("Banana",1))
+    private fun setUpFabButton() {
+        fab_add.setOnClickListener {
+            val dialog = RoundedDialog()
+            dialog.setOnAddItemClickListener(object : OnAddItemClickListener {
+                override fun onAddClick(groceryItem: GroceryItem) {
+                    viewModel.insertItem(groceryItem)
+                }
+            })
+            dialog.show(supportFragmentManager, null)
         }
     }
+
 
     private fun setUpRecyclerView() {
         rootView = findViewById(R.id.root_view)
@@ -48,16 +60,21 @@ class MainActivity : AppCompatActivity(), GroceriesOnItemCheckListener {
         rvGroceries.hasFixedSize()
         rvGroceries.adapter = adapter
         adapter.setOnCheckListener(this)
+        val touchHelper = ItemTouchHelper(object : SwipeCallBack(this) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val item = adapter.getItem(viewHolder.adapterPosition)
+                item.let {
+                    viewModel.deleteItem(item!!)
+                    rootView.snackShort((getString(R.string.item_deleted)))
+                }
+            }})
+        touchHelper.attachToRecyclerView(rvGroceries)
     }
 
     private fun observeViewModel(){
         viewModel.getItems().observe(this, Observer {
             if(it.isNullOrEmpty()) {
-                Snackbar.make(
-                    rootView,
-                    "Error: Something happened fetching your list... ",
-                    Snackbar.LENGTH_SHORT
-                ).show()
+                rootView.snackShort((getString(R.string.empty_list)))
             }else{
                 adapter.refreshData(it)
             }
