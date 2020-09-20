@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">GroceryApp</string>
     <string name="add_new_item">ADD</string>
+    <string name="add_new_item_title">New item to list</string>
+    <string name="add_item_name_hint">Add a item name</string>
+    <string name="add_item_amount_hint">Amount</string>
+    <string name="btn_add_item_title">Add</string>
+    <string name="empty_list">Your list is empty</string>
+    <string name="item_deleted">Item deleted</string>
 </resources>
