@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(), GroceriesOnItemCheckListener {
     lateinit var rvGroceries: RecyclerView
     private val adapter = GroceriesAdapter()
     lateinit var rootView: View
+    lateinit var emptyView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity(), GroceriesOnItemCheckListener {
 
     private fun setUpRecyclerView() {
         rootView = findViewById(R.id.root_view)
+        emptyView = findViewById(R.id.empty_view)
         rvGroceries = findViewById(R.id.rv_grocery_list)
         rvGroceries.layoutManager = LinearLayoutManager(this)
         rvGroceries.hasFixedSize()
@@ -74,8 +76,11 @@ class MainActivity : AppCompatActivity(), GroceriesOnItemCheckListener {
     private fun observeViewModel(){
         viewModel.getItems().observe(this, Observer {
             if(it.isNullOrEmpty()) {
-                rootView.snackShort((getString(R.string.empty_list)))
+                emptyView.visibility = View.VISIBLE
+                rvGroceries.visibility = View.GONE
             }else{
+                emptyView.visibility = View.GONE
+                rvGroceries.visibility = View.VISIBLE
                 adapter.refreshData(it)
             }
         })

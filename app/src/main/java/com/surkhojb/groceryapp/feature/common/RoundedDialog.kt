@@ -5,8 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import androidx.fragment.app.DialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import com.surkhojb.groceryapp.R
 import com.surkhojb.groceryapp.model.GroceryItem
@@ -17,16 +18,19 @@ interface OnAddItemClickListener{
     fun onAddClick(groceryItem: GroceryItem)
 }
 
-class RoundedDialog: BottomSheetDialogFragment() {
+class RoundedDialog: DialogFragment() {
     private val TAG = RoundedDialog::class.simpleName
     private var onAddItemClickListener: OnAddItemClickListener? = null
     private lateinit var edName: TextInputEditText
     private lateinit var edAmount: TextInputEditText
     private lateinit var  btnAdd: Button
 
-    override fun getTheme(): Int {
-        super.getTheme()
-        return  R.style.BottomSheetDialogTheme
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT ,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
     }
 
     override fun onCreateView(
