@@ -1,5 +1,6 @@
 package com.surkhojb.groceryapp.data.db
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.surkhojb.groceryapp.model.GroceryItem
@@ -17,4 +18,8 @@ interface GroceryDao{
 
     @Update
     fun updateItem(item: GroceryItem)
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @Query("DELETE FROM grocery_list")
+    fun clear()
 }
