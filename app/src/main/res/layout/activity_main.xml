@@ -5,17 +5,18 @@
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.main.MainActivity">
+    tools:context=".feature.main.MainActivity"
+    android:background="@color/lightBackground">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_grocery_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_grocery"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_grocery"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"

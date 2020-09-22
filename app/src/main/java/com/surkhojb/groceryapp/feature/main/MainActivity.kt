@@ -71,6 +71,24 @@ class MainActivity : AppCompatActivity(), GroceriesOnItemCheckListener {
                 }
             }})
         touchHelper.attachToRecyclerView(rvGroceries)
+
+        rvGroceries.setOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if(dy == 0){
+                    fab_add.show()
+                } else{
+                    fab_add.hide()
+                }
+                super.onScrolled(recyclerView, dx, dy)
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if(newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    fab_add.show()
+                }
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
     }
 
     private fun observeViewModel(){
