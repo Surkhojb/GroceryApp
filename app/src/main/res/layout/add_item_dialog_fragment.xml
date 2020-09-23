@@ -18,7 +18,6 @@
         android:text="@string/add_new_item_title"
         android:textColor="@color/primaryText"
         android:textSize="18sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
