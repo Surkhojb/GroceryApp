@@ -9,4 +9,8 @@
     <string name="item_deleted">Item deleted</string>
     <string name="empty_title_message">Whooops!</string>
     <string name="empty_message">Your list is empty because you don\'t add any item yet.</string>
+    <string name="title_login">Login</string>
+    <string name="title_sing_up">Sing up</string>
+    <string name="title_email">Email</string>
+    <string name="title_password">Password</string>
 </resources>
