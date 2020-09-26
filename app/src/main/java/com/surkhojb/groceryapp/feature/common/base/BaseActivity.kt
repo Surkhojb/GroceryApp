@@ -1,8 +1,6 @@
 package com.surkhojb.groceryapp.feature.common.base
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
