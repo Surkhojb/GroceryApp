@@ -1,6 +1,7 @@
 package com.surkhojb.groceryapp.feature.login.view
 
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.surkhojb.groceryapp.R
 import com.surkhojb.groceryapp.di.loginModule
 import com.surkhojb.groceryapp.feature.common.CustomDialog
@@ -20,6 +21,7 @@ class LoginActivity: BaseActivity<LoginViewModel>(LoginViewModel::class) {
     override fun setUpComponents() {
         setUpLoginButton()
         setUpSingUpButton()
+        observeViewModel()
     }
 
     private fun setUpLoginButton(){
@@ -40,6 +42,28 @@ class LoginActivity: BaseActivity<LoginViewModel>(LoginViewModel::class) {
         }
     }
 
+    private fun observeViewModel(){
+        viewModel.loginResult.observe(this, Observer {
+            if(it.data != null){
+                //TODO -> Go to MainActivity
+            }else {
+                showDialog(CustomDialog.Type.ERROR,
+                    "Uppss... something it's wrong",
+                    it.errorMessage.toString())
+            }
+        })
+
+        viewModel.singUpResult.observe(this, Observer {
+            if(it.data != null){
+               //TODO -> Go to MainActivity
+            }else {
+                showDialog(CustomDialog.Type.ERROR,
+                    "Uppss... something it's wrong",
+                    it.errorMessage.toString())
+            }
+        })
+    }
+
     private fun getUser(): User? {
         val user = User()
         val validator = Validator.validateLoginInputs(ed_email,ed_pass)
@@ -48,7 +72,7 @@ class LoginActivity: BaseActivity<LoginViewModel>(LoginViewModel::class) {
             user.userPassword = ed_pass.text.toString()
             user
         }else{
-            showDialog(CustomDialog.Type.SUCCESS,
+            showDialog(CustomDialog.Type.ERROR,
                 "Uppss... something it's wrong",
                 validator.second)
             null
