@@ -106,4 +106,8 @@ class MainActivity : BaseActivity<MainViewModel>(viewModelClass = MainViewModel:
             }
         })
     }
+
+    override fun injectModule() {}
+
+    override fun unloadModule() {}
 }
