@@ -9,8 +9,4 @@
     <color name="primaryText">#212121</color>
     <color name="secondaryText">#4A6572</color>
     <color name="lightBackground">#D3D3D3</color>
-    <color name="colorError">#B20000</color>
-    <color name="colorSuccess">#00B439</color>
-    <color name="colorInfo">#F19303</color>
-    <color name="colorHelp">#056DCF</color>
 </resources>

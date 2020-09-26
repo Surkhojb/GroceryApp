@@ -7,12 +7,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.surkhojb.groceryapp.R
 import com.surkhojb.groceryapp.feature.common.OnAddItemClickListener
 import com.surkhojb.groceryapp.feature.common.RoundedDialog
 import com.surkhojb.groceryapp.feature.common.SwipeCallBack
-import com.surkhojb.groceryapp.feature.common.base.BaseActivity
 import com.surkhojb.groceryapp.feature.common.extensions.snackShort
 import com.surkhojb.groceryapp.feature.main.adapter.GroceriesAdapter
 import com.surkhojb.groceryapp.feature.main.adapter.GroceriesOnItemCheckListener
@@ -22,18 +20,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class MainActivity : BaseActivity<MainViewModel>(viewModelClass = MainViewModel::class), GroceriesOnItemCheckListener {
+class MainActivity : AppCompatActivity(), GroceriesOnItemCheckListener {
 
+    private val viewModel: MainViewModel by viewModel()
     lateinit var rvGroceries: RecyclerView
     private val adapter = GroceriesAdapter()
     lateinit var rootView: View
     lateinit var emptyView: View
 
-    override fun getLayoutId(): Int{
-        return R.layout.activity_main
-    }
-
-    override fun setUpComponents() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         setUpFabButton()
         setUpRecyclerView()
         observeViewModel()
@@ -106,8 +103,4 @@ class MainActivity : BaseActivity<MainViewModel>(viewModelClass = MainViewModel:
             }
         })
     }
-
-    override fun injectModule() {}
-
-    override fun unloadModule() {}
 }
