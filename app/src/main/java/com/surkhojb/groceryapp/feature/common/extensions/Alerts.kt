@@ -15,6 +15,6 @@ private fun snack(view: View,message:String, duration: Int){
     Snackbar.make(
         view,
         message,
-        duration
+        Snackbar.LENGTH_SHORT
     ).show()
 }
