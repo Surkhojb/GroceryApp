@@ -22,7 +22,7 @@ class LoginRepositoryImpl(val firebaseAuth: FirebaseAuth): LoginRepository {
 
     override suspend fun firebaseSingUp(user: User): Response<FirebaseUser> {
         return try {
-            val response = firebaseAuth.signInWithEmailAndPassword(user.userEmail!!,
+            val response = firebaseAuth.createUserWithEmailAndPassword(user.userEmail!!,
                 user.userPassword!!
             ).await()
             Response.success(response.user,null)
