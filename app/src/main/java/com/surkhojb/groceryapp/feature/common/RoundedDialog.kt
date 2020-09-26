@@ -55,8 +55,8 @@ class RoundedDialog: DialogFragment() {
                     Log.e(TAG, ex.printStackTrace().toString())
                 }
             }else{
-                edName.error = "Item can't be empty"
-                edAmount.error = "Item can't be empty"
+                edName.error = getString(R.string.error_item_empty)
+                edAmount.error = getString(R.string.error_item_empty)
             }
         }
         return view

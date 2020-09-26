@@ -23,9 +23,9 @@ class CustomDialog private constructor(builder: Builder): BottomSheetDialogFragm
 
     private val background: Int = builder.alertBackground ?: R.color.colorError
     private val icon: Int = builder.alertIcon ?: R.drawable.ic_check
-    private val title: String = builder.alertTitle ?: "Error"
-    private val message: String = builder.alertMessage ?: "Something went wrong!"
-    private val buttonText: String = builder.primaryButtonText ?: "Done"
+    private val title: String = builder.alertTitle ?: getString(R.string.error_title)
+    private val message: String = builder.alertMessage ?: getString(R.string.error_message)
+    private val buttonText: String = builder.primaryButtonText ?: getString(R.string.action_done_title)
     private val listener: OnButtonClickListener? =  builder.alertListener
 
     override fun onCreateView(

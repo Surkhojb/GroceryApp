@@ -15,7 +15,6 @@ import com.surkhojb.groceryapp.feature.main.adapter.GroceriesAdapter
 import com.surkhojb.groceryapp.feature.main.adapter.GroceriesOnItemCheckListener
 import com.surkhojb.groceryapp.feature.main.viewmodel.MainViewModel
 import com.surkhojb.groceryapp.model.GroceryItem
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_content_fragment.view.*
 
 class MainFragment: BaseFragment<MainViewModel>(MainViewModel::class),

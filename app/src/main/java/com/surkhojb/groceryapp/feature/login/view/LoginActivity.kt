@@ -1,6 +1,7 @@
 package com.surkhojb.groceryapp.feature.login.view
 
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.Observer
 import com.surkhojb.groceryapp.R
 import com.surkhojb.groceryapp.di.loginModule
@@ -8,6 +9,7 @@ import com.surkhojb.groceryapp.feature.common.CustomDialog
 import com.surkhojb.groceryapp.feature.common.OnButtonClickListener
 import com.surkhojb.groceryapp.feature.common.base.BaseActivity
 import com.surkhojb.groceryapp.feature.common.base.Validator
+import com.surkhojb.groceryapp.feature.main.MainActivity
 import com.surkhojb.groceryapp.model.User
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.core.context.loadKoinModules
@@ -45,20 +47,20 @@ class LoginActivity: BaseActivity<LoginViewModel>(LoginViewModel::class) {
     private fun observeViewModel(){
         viewModel.loginResult.observe(this, Observer {
             if(it.data != null){
-                //TODO -> Go to MainActivity
+                MainActivity.start(this)
             }else {
                 showDialog(CustomDialog.Type.ERROR,
-                    "Uppss... something it's wrong",
+                    getString(R.string.error_something_wrong),
                     it.errorMessage.toString())
             }
         })
 
         viewModel.singUpResult.observe(this, Observer {
             if(it.data != null){
-               //TODO -> Go to MainActivity
+                MainActivity.start(this)
             }else {
                 showDialog(CustomDialog.Type.ERROR,
-                    "Uppss... something it's wrong",
+                    getString(R.string.error_something_wrong),
                     it.errorMessage.toString())
             }
         })
@@ -73,7 +75,7 @@ class LoginActivity: BaseActivity<LoginViewModel>(LoginViewModel::class) {
             user
         }else{
             showDialog(CustomDialog.Type.ERROR,
-                "Uppss... something it's wrong",
+                getString(R.string.error_something_wrong),
                 validator.second)
             null
         }

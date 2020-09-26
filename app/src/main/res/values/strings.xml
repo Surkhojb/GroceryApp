@@ -13,4 +13,12 @@
     <string name="title_sing_up">Sing up</string>
     <string name="title_email">Email</string>
     <string name="title_password">Password</string>
+    <string name="error_something_wrong">Uppss... something it\'s wrong</string>
+    <string name="error_invalid_password_format">Check your password: Password must be between 4 and 8 digits long and include at least a numeric digit</string>
+    <string name="error_invalid_email_format">Check your email: Email should contain @ and be a valid email</string>
+    <string name="error_invalid_email_and_password_format">Check your email: Email should contain @ and be a valid email</string>
+    <string name="error_title">Error</string>
+    <string name="error_message">Something went wrong!</string>
+    <string name="action_done_title">Done</string>
+    <string name="error_item_empty">Item can\'t be empty</string>
 </resources>

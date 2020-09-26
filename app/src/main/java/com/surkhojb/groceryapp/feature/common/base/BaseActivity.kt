@@ -10,14 +10,17 @@ import com.surkhojb.groceryapp.feature.common.OnButtonClickListener
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 
-abstract class BaseActivity<VM: ViewModel>(private val viewModelClass: KClass<VM>): AppCompatActivity() {
+abstract class BaseActivity<VM: ViewModel>(private val viewModelClass: KClass<VM>?): AppCompatActivity() {
 
     protected lateinit var viewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         injectModule()
-        viewModel = getViewModel(viewModelClass)
+        //We only inject viewModel if the class is not null
+        if(viewModelClass != null){
+            viewModel = getViewModel(viewModelClass)
+        }
         setContentView(getLayoutId())
         setUpComponents()
     }
