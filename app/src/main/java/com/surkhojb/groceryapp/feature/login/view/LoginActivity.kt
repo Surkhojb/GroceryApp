@@ -1,13 +1,10 @@
 package com.surkhojb.groceryapp.feature.login.view
 
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.Observer
 import com.surkhojb.groceryapp.R
 import com.surkhojb.groceryapp.di.loginModule
 import com.surkhojb.groceryapp.feature.common.CustomDialog
-import com.surkhojb.groceryapp.feature.common.OnButtonClickListener
-import com.surkhojb.groceryapp.feature.common.base.BaseActivity
+import com.surkhojb.groceryapp.feature.common.base.BaseViewModelActivity
 import com.surkhojb.groceryapp.feature.common.base.Validator
 import com.surkhojb.groceryapp.feature.main.MainActivity
 import com.surkhojb.groceryapp.model.User
@@ -15,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 
-class LoginActivity: BaseActivity<LoginViewModel>(LoginViewModel::class) {
+class LoginActivity: BaseViewModelActivity<LoginViewModel>(LoginViewModel::class) {
     override fun getLayoutId(): Int {
         return R.layout.activity_login
     }
@@ -23,14 +20,43 @@ class LoginActivity: BaseActivity<LoginViewModel>(LoginViewModel::class) {
     override fun setUpComponents() {
         setUpLoginButton()
         setUpSingUpButton()
-        observeViewModel()
+    }
+
+    override fun observeViewModel(){
+        viewModel?.loginResult?.observe(this, Observer {
+            if(it.data != null){
+                MainActivity.start(this)
+            }else {
+                showDialog(CustomDialog.Type.ERROR,
+                    getString(R.string.error_something_wrong),
+                    it.errorMessage.toString())
+            }
+        })
+
+        viewModel?.singUpResult?.observe(this, Observer {
+            if(it.data != null){
+                MainActivity.start(this)
+            }else {
+                showDialog(CustomDialog.Type.ERROR,
+                    getString(R.string.error_something_wrong),
+                    it.errorMessage.toString())
+            }
+        })
+    }
+
+    override fun injectModule() {
+      loadKoinModules(loginModule)
+    }
+
+    override fun unloadModule() {
+        unloadKoinModules(loginModule)
     }
 
     private fun setUpLoginButton(){
         btn_login.setOnClickListener {
             val user = getUser()
             user?.let {
-                viewModel.loginUser(it)
+                viewModel?.loginUser(it)
             }
         }
     }
@@ -39,31 +65,9 @@ class LoginActivity: BaseActivity<LoginViewModel>(LoginViewModel::class) {
         btn_singup.setOnClickListener {
             val user = getUser()
             user?.let {
-                viewModel.singUpUser(it)
+                viewModel?.singUpUser(it)
             }
         }
-    }
-
-    private fun observeViewModel(){
-        viewModel.loginResult.observe(this, Observer {
-            if(it.data != null){
-                MainActivity.start(this)
-            }else {
-                showDialog(CustomDialog.Type.ERROR,
-                    getString(R.string.error_something_wrong),
-                    it.errorMessage.toString())
-            }
-        })
-
-        viewModel.singUpResult.observe(this, Observer {
-            if(it.data != null){
-                MainActivity.start(this)
-            }else {
-                showDialog(CustomDialog.Type.ERROR,
-                    getString(R.string.error_something_wrong),
-                    it.errorMessage.toString())
-            }
-        })
     }
 
     private fun getUser(): User? {
@@ -80,14 +84,5 @@ class LoginActivity: BaseActivity<LoginViewModel>(LoginViewModel::class) {
             null
         }
     }
-
-    override fun injectModule() {
-      loadKoinModules(loginModule)
-    }
-
-    override fun unloadModule() {
-        unloadKoinModules(loginModule)
-    }
-
 
 }
