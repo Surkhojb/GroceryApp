@@ -1,4 +1,4 @@
-package com.surkhojb.groceryapp.feature.common
+package com.surkhojb.groceryapp.feature.common.ui
 
 import android.content.Context
 import androidx.recyclerview.widget.ItemTouchHelper

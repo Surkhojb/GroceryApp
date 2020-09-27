@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.surkhojb.groceryapp.R
-import com.surkhojb.groceryapp.feature.common.CustomDialog
-import com.surkhojb.groceryapp.feature.common.OnButtonClickListener
+import com.surkhojb.groceryapp.feature.common.ui.CustomDialog
+import com.surkhojb.groceryapp.feature.common.ui.OnButtonClickListener
 abstract class BaseActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,8 @@ abstract class BaseActivity: AppCompatActivity() {
             .title(title)
             .message(message)
             .buttonText("Accept")
-            .setListener(object : OnButtonClickListener {
+            .setListener(object :
+                OnButtonClickListener {
                 override fun onClick(customDialog: CustomDialog) {
                     customDialog.dismiss()
                 }
@@ -50,7 +51,8 @@ abstract class BaseActivity: AppCompatActivity() {
             .title(title)
             .message(message)
             .buttonText("Accept")
-            .setListener(object : OnButtonClickListener {
+            .setListener(object :
+                OnButtonClickListener {
                 override fun onClick(customDialog: CustomDialog) {
                     customDialog.dismiss()
                 }
@@ -66,7 +68,8 @@ abstract class BaseActivity: AppCompatActivity() {
             .title(title)
             .message(message)
             .buttonText("Accept")
-            .setListener(object : OnButtonClickListener {
+            .setListener(object :
+                OnButtonClickListener {
                 override fun onClick(customDialog: CustomDialog) {
                     customDialog.dismiss()
                 }

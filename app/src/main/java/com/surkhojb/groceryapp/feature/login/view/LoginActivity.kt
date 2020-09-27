@@ -3,16 +3,18 @@ package com.surkhojb.groceryapp.feature.login.view
 import androidx.lifecycle.Observer
 import com.surkhojb.groceryapp.R
 import com.surkhojb.groceryapp.di.loginModule
-import com.surkhojb.groceryapp.feature.common.CustomDialog
+import com.surkhojb.groceryapp.feature.common.ui.CustomDialog
 import com.surkhojb.groceryapp.feature.common.base.BaseViewModelActivity
 import com.surkhojb.groceryapp.feature.common.base.Validator
+import com.surkhojb.groceryapp.feature.login.viewmodel.LoginViewModel
 import com.surkhojb.groceryapp.feature.main.MainActivity
 import com.surkhojb.groceryapp.model.User
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 
-class LoginActivity: BaseViewModelActivity<LoginViewModel>(LoginViewModel::class) {
+class LoginActivity: BaseViewModelActivity<LoginViewModel>(
+    LoginViewModel::class) {
     override fun getLayoutId(): Int {
         return R.layout.activity_login
     }
@@ -27,7 +29,8 @@ class LoginActivity: BaseViewModelActivity<LoginViewModel>(LoginViewModel::class
             if(it.data != null){
                 MainActivity.start(this)
             }else {
-                showDialog(CustomDialog.Type.ERROR,
+                showDialog(
+                    CustomDialog.Type.ERROR,
                     getString(R.string.error_something_wrong),
                     it.errorMessage.toString())
             }
@@ -37,7 +40,8 @@ class LoginActivity: BaseViewModelActivity<LoginViewModel>(LoginViewModel::class
             if(it.data != null){
                 MainActivity.start(this)
             }else {
-                showDialog(CustomDialog.Type.ERROR,
+                showDialog(
+                    CustomDialog.Type.ERROR,
                     getString(R.string.error_something_wrong),
                     it.errorMessage.toString())
             }
@@ -78,7 +82,8 @@ class LoginActivity: BaseViewModelActivity<LoginViewModel>(LoginViewModel::class
             user.userPassword = ed_pass.text.toString()
             user
         }else{
-            showDialog(CustomDialog.Type.ERROR,
+            showDialog(
+                CustomDialog.Type.ERROR,
                 getString(R.string.error_something_wrong),
                 validator.second)
             null

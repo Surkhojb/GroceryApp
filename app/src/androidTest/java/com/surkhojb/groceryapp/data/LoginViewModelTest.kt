@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.firebase.auth.FirebaseAuth
 import com.surkhojb.groceryapp.data.repository.impl.LoginRepositoryImpl
 import com.surkhojb.groceryapp.feature.common.base.Response
-import com.surkhojb.groceryapp.feature.login.view.LoginViewModel
+import com.surkhojb.groceryapp.feature.login.viewmodel.LoginViewModel
 import com.surkhojb.groceryapp.model.User
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
@@ -22,7 +22,10 @@ class LoginViewModelTest {
     @Before
     fun setUp(){
         val firebaseAuth = FirebaseAuth.getInstance()
-        viewModel = LoginViewModel(LoginRepositoryImpl(firebaseAuth))
+        viewModel =
+            LoginViewModel(
+                LoginRepositoryImpl(firebaseAuth)
+            )
     }
 
     @Test

@@ -3,7 +3,7 @@ package com.surkhojb.groceryapp.di
 import com.google.firebase.auth.FirebaseAuth
 import com.surkhojb.groceryapp.data.repository.LoginRepository
 import com.surkhojb.groceryapp.data.repository.impl.LoginRepositoryImpl
-import com.surkhojb.groceryapp.feature.login.view.LoginViewModel
+import com.surkhojb.groceryapp.feature.login.viewmodel.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -26,8 +26,10 @@ fun getRepository(firebaseAuth: FirebaseAuth): LoginRepository {
     return LoginRepositoryImpl(firebaseAuth)
 }
 
-fun getLoginViewModel(repository: LoginRepository): LoginViewModel{
-    return LoginViewModel(repository)
+fun getLoginViewModel(repository: LoginRepository): LoginViewModel {
+    return LoginViewModel(
+        repository
+    )
 }
 
 

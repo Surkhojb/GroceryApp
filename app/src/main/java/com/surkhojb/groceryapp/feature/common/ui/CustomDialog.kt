@@ -1,4 +1,4 @@
-package com.surkhojb.groceryapp.feature.common
+package com.surkhojb.groceryapp.feature.common.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -54,7 +54,7 @@ class CustomDialog private constructor(builder: Builder): BottomSheetDialogFragm
         var primaryButtonText: String? = ""
         var alertListener: OnButtonClickListener? = null
 
-        fun background(color: Int):Builder{
+        fun background(color: Int): Builder {
             alertBackground = color
             return this
         }
@@ -79,12 +79,12 @@ class CustomDialog private constructor(builder: Builder): BottomSheetDialogFragm
             return this
         }
 
-        fun setListener(listener: OnButtonClickListener): Builder{
+        fun setListener(listener: OnButtonClickListener): Builder {
             alertListener = listener
             return this
         }
 
-        fun build(): CustomDialog{
+        fun build(): CustomDialog {
             return CustomDialog(this)
         }
     }

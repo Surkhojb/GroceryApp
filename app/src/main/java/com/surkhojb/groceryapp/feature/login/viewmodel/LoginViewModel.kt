@@ -1,4 +1,4 @@
-package com.surkhojb.groceryapp.feature.login.view
+package com.surkhojb.groceryapp.feature.login.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -2,7 +2,6 @@ package com.surkhojb.groceryapp.feature.common.base
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
-import com.surkhojb.groceryapp.feature.common.CustomDialog
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 

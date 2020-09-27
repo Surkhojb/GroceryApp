@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.surkhojb.groceryapp.R
-import com.surkhojb.groceryapp.feature.common.OnAddItemClickListener
-import com.surkhojb.groceryapp.feature.common.RoundedDialog
-import com.surkhojb.groceryapp.feature.common.SwipeCallBack
+import com.surkhojb.groceryapp.feature.common.ui.OnAddItemClickListener
+import com.surkhojb.groceryapp.feature.common.ui.RoundedDialog
+import com.surkhojb.groceryapp.feature.common.ui.SwipeCallBack
 import com.surkhojb.groceryapp.feature.common.base.BaseFragment
 import com.surkhojb.groceryapp.feature.common.extensions.snackShort
 import com.surkhojb.groceryapp.feature.main.adapter.GroceriesAdapter
@@ -41,8 +41,10 @@ class MainFragment: BaseFragment<MainViewModel>(MainViewModel::class),
 
     private fun setUpFabButton(view: View) {
         view.fab_add.setOnClickListener {
-            val dialog = RoundedDialog()
-            dialog.setOnAddItemClickListener(object : OnAddItemClickListener {
+            val dialog =
+                RoundedDialog()
+            dialog.setOnAddItemClickListener(object :
+                OnAddItemClickListener {
                 override fun onAddClick(groceryItem: GroceryItem) {
                     viewModel.insertItem(groceryItem)
                 }

@@ -1,4 +1,4 @@
-package com.surkhojb.groceryapp.feature.common
+package com.surkhojb.groceryapp.feature.common.ui
 
 import android.os.Bundle
 import android.util.Log
