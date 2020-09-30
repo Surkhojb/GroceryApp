@@ -14,7 +14,7 @@ class LoginRepositoryImpl(val firebaseAuth: FirebaseAuth): LoginRepository {
             val response = firebaseAuth.signInWithEmailAndPassword(user.userEmail!!,
                 user.userPassword!!
             ).await()
-            Response.success(response.user,null)
+            Response.success(response.user)
         }catch (ex: Exception){
             Response.error(null,ex.message.toString())
         }
@@ -25,7 +25,7 @@ class LoginRepositoryImpl(val firebaseAuth: FirebaseAuth): LoginRepository {
             val response = firebaseAuth.createUserWithEmailAndPassword(user.userEmail!!,
                 user.userPassword!!
             ).await()
-            Response.success(response.user,null)
+            Response.success(response.user)
         }catch (ex: Exception){
             Response.error(null,ex.message.toString())
         }

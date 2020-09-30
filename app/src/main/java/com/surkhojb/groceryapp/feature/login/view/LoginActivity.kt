@@ -5,6 +5,7 @@ import com.surkhojb.groceryapp.R
 import com.surkhojb.groceryapp.di.loginModule
 import com.surkhojb.groceryapp.feature.common.ui.CustomDialog
 import com.surkhojb.groceryapp.feature.common.base.BaseViewModelActivity
+import com.surkhojb.groceryapp.feature.common.base.Response
 import com.surkhojb.groceryapp.feature.common.base.Validator
 import com.surkhojb.groceryapp.feature.login.viewmodel.LoginViewModel
 import com.surkhojb.groceryapp.feature.main.MainActivity
@@ -26,24 +27,24 @@ class LoginActivity: BaseViewModelActivity<LoginViewModel>(
 
     override fun observeViewModel(){
         viewModel?.loginResult?.observe(this, Observer {
-            if(it.data != null){
-                MainActivity.start(this)
-            }else {
-                showDialog(
+            when(it){
+                is Response.success -> { MainActivity.start(this) }
+                is Response.error -> {  showDialog(
                     CustomDialog.Type.ERROR,
                     getString(R.string.error_something_wrong),
-                    it.errorMessage.toString())
+                    it.errorMessage.toString())}
+                is Response.loading -> { showLoading() }
             }
         })
 
         viewModel?.singUpResult?.observe(this, Observer {
-            if(it.data != null){
-                MainActivity.start(this)
-            }else {
-                showDialog(
+            when(it){
+                is Response.success -> { MainActivity.start(this) }
+                is Response.error -> {  showDialog(
                     CustomDialog.Type.ERROR,
                     getString(R.string.error_something_wrong),
-                    it.errorMessage.toString())
+                    it.errorMessage.toString())}
+                is Response.loading -> { showLoading() }
             }
         })
     }

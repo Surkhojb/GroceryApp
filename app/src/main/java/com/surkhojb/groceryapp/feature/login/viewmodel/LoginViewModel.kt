@@ -15,6 +15,7 @@ class LoginViewModel(private val repository: LoginRepository): ViewModel(){
     var singUpResult : MutableLiveData<Response<FirebaseUser>> = MutableLiveData()
 
     fun loginUser(user: User) = CoroutineScope(Dispatchers.IO).launch {
+        loginResult.postValue(Response.loading)
         val result = repository.firebaseLogin(user)
         loginResult.postValue(result)
     }
